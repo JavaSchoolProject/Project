@@ -5,14 +5,14 @@ public class Tower extends Rectangle
 {
 	
 	private static final long serialVersionUID = 1L;
-	private int height;
-	private int width;
+	private int height=0;
+	private int width=0;
 	
 	//Tower(X Position,Y Position,Towers Height)
-	public Tower(int x, int y, int height)
+	public Tower(int x, int y,int width, int height)
 	{
-		this.setHeight(height);
-		this.setWidth(width);
+		this.height=height;
+		this.width=width;
 		this.setBounds(x, y, width, height);
 	}
 
@@ -28,16 +28,18 @@ public class Tower extends Rectangle
 		this.height = height;
 	}
 	
-	//returns the height of the tower
+	//returns the width of the tower
 		public double getWidth()
 		{
-			return this.height;
+			return this.width;
 		}
 
-		//sets the height of the tower
+		//sets the width of the tower
 		public void setWidth(int width)
 		{
 			this.width = width;
 		}
+	
+	
 	
 }
