@@ -16,7 +16,7 @@ public class SortersView extends JPanel
 	private Timer timer;
 	private int counter, intIndex;
 	private int[] intArray;
-	private Sorters sorters = new Sorters();
+	private Sorters s1 = new Sorters();
 
 	public SortersView(Tower[] TA)
 	{
@@ -51,8 +51,8 @@ public class SortersView extends JPanel
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				fillIntArray(TA);
-				intArray=sorters.Insertion(intArray);
-				intIndex=sorters.getStepIndex();
+				intArray=s1.Insertion(intArray);
+				intIndex=s1.getStepIndex();
 				
 				for (int i = 0; i < TA.length; i++)
 				{
@@ -86,7 +86,7 @@ public class SortersView extends JPanel
 
 	public void printLogs()
 	{
-		if(!sorters.isFinished())
+		if(!s1.isFinished())
 		{
 			System.out.println("step "+counter+":");
 
@@ -135,7 +135,7 @@ public class SortersView extends JPanel
 
 	public Sorters getSorters()
 	{
-		return this.sorters;
+		return this.s1;
 	}
 
 	public Tower[] getTA()
@@ -144,4 +144,3 @@ public class SortersView extends JPanel
 	}
 
 }
-
