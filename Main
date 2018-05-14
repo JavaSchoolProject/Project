@@ -7,39 +7,43 @@ public class Main
 {
 	public static void main(String[] args) 
 	{
-		int towersNumber=42;
-		int x=640;
-		int y=480;
+		//setting up the frame
+		int towersNumber=5;
+		int xSize=640;
+		int ySize=480;
 		JFrame frame = new JFrame();
-		frame.setSize(x,y);
+		frame.setSize(xSize,ySize);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("How2Sort");
 		frame.setLayout(new GridLayout());
 		frame.setVisible(true);
 
-
+		//setting up the towers:
 		Tower[] TA = new Tower[towersNumber];
-		fillTowerArrayRandomly(TA, y,x);
+		fillTowerArrayRandomly(TA, ySize,xSize);
 
-
-		//TODO: add public SorterView
+		//adding the sorterView to the frame
 		SortersView sortersView = new SortersView(TA);
 		frame.add(sortersView);
+		
+		sortersView.showInsertion();
 
 
 	}
-	//needs work************************************************
+	
 	public static void fillTowerArrayRandomly(Tower[] TA,int frameHeight,int frameWidth)
 	{
 		Random rand = new Random();
 		int height;
-		int width=(int) (frameWidth/(TA.length*1.5 ));
+		int width = (int) (frameWidth/(TA.length));
+		int spaces = (int) (width*2);
+		
 		for (int i = 0; i < TA.length; i++) 
 		{
 			//Tower(x,y,height)
 			height=rand.nextInt(420)+10;
-			TA[i] =new Tower((i*width*2),frameHeight-height-40,height);
+			TA[i] =new Tower(i*spaces,frameHeight-height-40,width,height);
 		}
 	}
 
