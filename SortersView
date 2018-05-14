@@ -42,7 +42,7 @@ public class SortersView extends JPanel
 		System.out.println("Insertion Sorting logs:\n");
 		counter=0;
 
-		timer = new Timer(200, new ActionListener() 
+		timer = new Timer(20, new ActionListener() 
 		{
 
 			@Override
@@ -54,7 +54,7 @@ public class SortersView extends JPanel
 				addToCounter();
 				repaint();
 				printLogs();
-				
+
 
 				if(getSorters().isFinished()&&timer.isRunning())
 				{
@@ -76,7 +76,7 @@ public class SortersView extends JPanel
 
 			for (int i = 0; i < TA.length; i++) 
 			{
-				System.out.println("TA["+i+"]="+TA[i].getHeight());
+				System.out.println("TA["+i+"]="+(int)TA[i].getHeight());
 			}
 
 			System.out.println();
@@ -84,9 +84,10 @@ public class SortersView extends JPanel
 	}
 	public void updateTowerArray(int[] intArray)
 	{
+		
 		for (int i = 0; i < TA.length; i++) 
 		{
-			TA[i].setTowerHeight(intArray[i]);
+			TA[i].setHeight(intArray[i]);
 		}
 	}
 
@@ -96,7 +97,7 @@ public class SortersView extends JPanel
 
 		for (int i = 0; i < TA.length; i++) 
 		{
-			intArray[i]=TA[i].getTowerHeight();
+			intArray[i]=(int) TA[i].getHeight();
 		}
 	}
 
@@ -127,3 +128,4 @@ public class SortersView extends JPanel
 	}
 
 }
+
