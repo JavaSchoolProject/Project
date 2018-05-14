@@ -4,29 +4,29 @@ public class Sorters
 {
 	private boolean finished=false;
 	
-	public Tower[] Insertion(Tower[] TA)
+	public int[] Insertion(int[] IntArray)
 	{
 
 		finished=false;
 		
-		Tower keepNum;
+		int keepNum;
 
-		for (int i = 1; i < TA.length; i++) 
+		for (int i = 1; i < IntArray.length; i++) 
 		{
-			if(i==(TA.length-1)&&TA[i].getHeight()>TA[i-1].getHeight())
+			if(i==(IntArray.length-1)&&IntArray[i]>IntArray[i-1])
 			{
 				finished=true;
 			}
-			if(TA[i-1].getHeight()>TA[i].getHeight())
+			if(IntArray[i-1]>IntArray[i])
 			{
-				keepNum=TA[i-1];
-				TA[i-1]=TA[i];
-				TA[i]=keepNum;
+				keepNum=IntArray[i-1];
+				IntArray[i-1]=IntArray[i];
+				IntArray[i]=keepNum;
 				break;
 			}
 		}
 
-		return TA;
+		return IntArray;
 	}
 	
 	public boolean isFinished()
@@ -36,5 +36,4 @@ public class Sorters
 
 
 }
-
 
