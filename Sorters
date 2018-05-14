@@ -1,40 +1,45 @@
 
 
+
 public class Sorters 
 {
-	private boolean finished=false;
-
-	public int[] Insertion(int[] IntArray)
+	private boolean finished;
+	private int stepIndex;
+	
+	public int[] Insertion(int[] intArray)
 	{
 
-		finished=false;
-
+		finished=true;
+		
+		
 		int keepNum;
-		while(!finished)
-		{
-			for (int i = 1; i < IntArray.length; i++) 
 
+			for (int i = 1; i < intArray.length; i++) 
 			{
-				if(i==IntArray.length-1&&IntArray[IntArray.length-1]>=IntArray[IntArray.length-2])
+				
+				if(intArray[i-1]>intArray[i])
 				{
-					finished=true;
+					keepNum=intArray[i-1];
+					intArray[i-1]=intArray[i];
+					intArray[i]=keepNum;
+					finished=false;	
+					stepIndex=i;
 					break;
 				}
-				if(IntArray[i-1]>IntArray[i])
-				{
-					keepNum=IntArray[i-1];
-					IntArray[i-1]=IntArray[i];
-					IntArray[i]=keepNum;
-					break;
-				}
+				
 			}
-		}
-		return IntArray;
+		
+		return intArray;
 	}
-
+	
 	public boolean isFinished()
 	{
 		return finished;
+	}
+	
+	public int getStepIndex()
+	{
+		return stepIndex;
 	}
 
 
