@@ -3,32 +3,35 @@
 public class Sorters 
 {
 	private boolean finished=false;
-	
+
 	public int[] Insertion(int[] IntArray)
 	{
 
 		finished=false;
-		
-		int keepNum;
 
-		for (int i = 1; i < IntArray.length; i++) 
+		int keepNum;
+		while(!finished)
 		{
-			if(i==(IntArray.length-1)&&IntArray[i]>IntArray[i-1])
+			for (int i = 1; i < IntArray.length; i++) 
+
 			{
-				finished=true;
-			}
-			if(IntArray[i-1]>IntArray[i])
-			{
-				keepNum=IntArray[i-1];
-				IntArray[i-1]=IntArray[i];
-				IntArray[i]=keepNum;
-				break;
+				if(i==IntArray.length-1&&IntArray[IntArray.length-1]>=IntArray[IntArray.length-2])
+				{
+					finished=true;
+					break;
+				}
+				if(IntArray[i-1]>IntArray[i])
+				{
+					keepNum=IntArray[i-1];
+					IntArray[i-1]=IntArray[i];
+					IntArray[i]=keepNum;
+					break;
+				}
 			}
 		}
-
 		return IntArray;
 	}
-	
+
 	public boolean isFinished()
 	{
 		return finished;
@@ -36,4 +39,3 @@ public class Sorters
 
 
 }
-
