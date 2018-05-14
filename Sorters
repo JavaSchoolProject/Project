@@ -1,5 +1,40 @@
 
+
 public class Sorters 
 {
+	private boolean finished=false;
+	
+	public Tower[] Insertion(Tower[] TA)
+	{
+
+		finished=false;
+		
+		Tower keepNum;
+
+		for (int i = 1; i < TA.length; i++) 
+		{
+			if(i==(TA.length-1)&&TA[i].getHeight()>TA[i-1].getHeight())
+			{
+				finished=true;
+			}
+			if(TA[i-1].getHeight()>TA[i].getHeight())
+			{
+				keepNum=TA[i-1];
+				TA[i-1]=TA[i];
+				TA[i]=keepNum;
+				break;
+			}
+		}
+
+		return TA;
+	}
+	
+	public boolean isFinished()
+	{
+		return finished;
+	}
+
 
 }
+
+
