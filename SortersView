@@ -1,0 +1,25 @@
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
+import javax.swing.JPanel;
+
+public class SortersView extends JPanel 
+{
+	private Tower[] TA;
+	
+	public SortersView(Tower[] TA)
+	{
+		this.TA=TA;
+	}
+
+	public void paintComponent(Graphics g)
+	{
+		Graphics2D g2=(Graphics2D) g;
+		for (int i = 0; i < TA.length; i++) {
+			g2.fill(TA[i]);
+			
+		}
+	}
+	
+
+}
