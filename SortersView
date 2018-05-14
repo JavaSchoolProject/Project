@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
@@ -13,7 +14,7 @@ public class SortersView extends JPanel
 	private Tower[] originalTA;
 	private Tower[] TA;
 	private Timer timer;
-	private int counter; 
+	private int counter, intIndex;
 	private int[] intArray;
 	private Sorters sorters = new Sorters();
 
@@ -31,6 +32,7 @@ public class SortersView extends JPanel
 
 		for (int i = 0; i < TA.length; i++) 
 		{
+			g2.setColor(TA[i].getColor());
 			g2.fill(TA[i]);
 		}
 
@@ -42,7 +44,7 @@ public class SortersView extends JPanel
 		System.out.println("Insertion Sorting logs:\n");
 		counter=0;
 
-		timer = new Timer(20, new ActionListener() 
+		timer = new Timer(200, new ActionListener() 
 		{
 
 			@Override
@@ -50,6 +52,20 @@ public class SortersView extends JPanel
 			{
 				fillIntArray(TA);
 				intArray=sorters.Insertion(intArray);
+				intIndex=sorters.getStepIndex();
+				
+				for (int i = 0; i < TA.length; i++)
+				{
+					if(i==intIndex)
+					{
+						TA[i].setColor(Color.red);
+					}
+					else
+					{
+						TA[i].setColor(Color.black);
+					}
+				}
+				
 				updateTowerArray(intArray);
 				addToCounter();
 				repaint();
