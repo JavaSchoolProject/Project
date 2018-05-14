@@ -1,78 +1,54 @@
+import java.awt.GridLayout;
+import java.util.Random;
 
-import java.awt.Rectangle;
+import javax.swing.JFrame;
 
-public class Tower extends Rectangle
+public class Main
 {
-
-	private static final long serialVersionUID = 1L;
-	private int x, y, width,  height,  frameDisplayedOnHeight;
-
-	//Tower(X Position,Y Position,Towers towertowerWidth)
-	public Tower(int x,int width, int height, int frameDisplayedOnHeight)
+	private static int xSize=640;
+	private static int ySize=480;
+	
+	public static void main(String[] args) 
 	{
-		this.x=x;
-		this.y=frameDisplayedOnHeight-height-40;
-		this.width=width;
-		this.height=height;
-		this.frameDisplayedOnHeight=frameDisplayedOnHeight;
-		this.setBounds(x, y, width, height);
+		//setting up the frame
+		int towersNumber=120;
+		JFrame frame = new JFrame();
+		frame.setSize(xSize,ySize);
+		frame.setResizable(false);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setTitle("How2Sort");
+		frame.setLayout(new GridLayout());
+		frame.setVisible(true);
+
+		//setting up the towers:
+		Tower[] TA = new Tower[towersNumber];
+		fillTowerArrayRandomly(TA, ySize,xSize);
+
+		//adding the sorterView to the frame:
+		SortersView sortersView = new SortersView(TA);
+		frame.add(sortersView);
+		
+		sortersView.showInsertion();
+
+
 	}
 	
-
-	public double getX() 
+	//fill the tower array with towers, the towers have random height
+	public static void fillTowerArrayRandomly(Tower[] TA,int frameHeight,int frameWidth)
 	{
-		return x;
+		Random rand = new Random();
+		int height;
+		int width = (int) (frameWidth/(TA.length*1.5));
+		int spaces = (int) (width*2);
+		
+		for (int i = 0; i < TA.length; i++) 
+		{
+			//Tower(x,y,height)
+			height=rand.nextInt(420)+10;
+			TA[i] =new Tower(i*spaces,width,height,ySize);
+		}
 	}
-
-	public void setX(int x)
-	{
-		this.x = x;
-	}
-
-	public double getY() 
-	{
-		return y;
-	}
-
-	public void setY(int y)
-	{
-		this.y = y;
-	}
-
-	public double getWidth()
-	{
-		return width;
-	}
-
-	public void setWidth(int width) 
-	{
-		this.width = width;
-	}
-
-	public double getHeight() 
-	{
-		return height;
-	}
-
-	public void setHeight(int height) 
-	{
-		this.height = height;
-		this.y=frameDisplayedOnHeight-height-40;
-	}
-
-	public int getFrameDisplayedOnHeight()
-	{
-		return frameDisplayedOnHeight;
-	}
-
-	public void setFrameDisplayedOnHeight(int frameDisplayedOnHeight) 
-	{
-		this.frameDisplayedOnHeight = frameDisplayedOnHeight;
-	}
-
-	
-	
-
 
 
 }
+
