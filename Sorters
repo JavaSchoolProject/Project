@@ -1,45 +1,136 @@
 
 
-
 public class Sorters 
 {
-	private boolean finished;
+	private boolean finished=false;
+	private int steps=1;
 	private int stepIndex;
-	
-	public int[] Insertion(int[] intArray)
-	{
 
-		finished=true;
+	public void printStatus(int[] array)
+	{	
+		System.out.println("\n\nstep number: "+this.steps);
+		this.steps++;
 		
+		System.out.println("array currently looks like this:");
+		for (int i = 0; i < array.length-1; i++) {
+			System.out.print(array[i] +", ");
+		}
+		System.out.print(array[array.length-1]);
+		if(this.finished)
+			System.out.println("\nDONE");
 		
-		int keepNum;
-
-			for (int i = 1; i < intArray.length; i++) 
-			{
-				
-				if(intArray[i-1]>intArray[i])
-				{
-					keepNum=intArray[i-1];
-					intArray[i-1]=intArray[i];
-					intArray[i]=keepNum;
-					finished=false;	
-					stepIndex=i;
-					break;
-				}
-				
-			}
-		
-		return intArray;
 	}
 	
-	public boolean isFinished()
+	public int[] Insertion(int[] array)
 	{
-		return finished;
+
+		finished=false;
+
+		int keepNum;
+		while(!this.finished)
+		{
+			for (int i = 1; i < array.length; i++) 
+
+			{
+				if(i==array.length-1&&array[array.length-1]>=array[array.length-2])
+				{
+					this.finished=true;
+					printStatus(array);
+					break;
+				}
+				if(array[i-1]>array[i])
+				{
+					keepNum=array[i-1];
+					array[i-1]=array[i];
+					array[i]=keepNum;
+					stepIndex=i;
+					printStatus(array);
+					break; 
+				}
+			}
+		}
+		return array;
 	}
 	
 	public int getStepIndex()
 	{
 		return stepIndex;
+	}
+
+	//merges 2 arrays into 1 array
+	public int[] merge(int[] arr1,int[] arr2,int[] array)
+	{
+		int i=0, j=0, k=0;
+		while(i<arr1.length&&j<arr2.length)
+		{
+			if(arr1[i]<arr2[j])
+			{
+				array[k]=arr1[i];
+				i++;
+				k++;
+			
+			}
+			else
+			{
+				array[k]=arr2[j];
+				j++;
+				k++;
+			
+			}
+		}
+		while(i<arr1.length)
+		{
+			array[k]=arr1[i];
+			i++;
+			k++;
+			
+		}
+		while(j<arr2.length)
+		{
+			array[k]=arr2[j];
+			j++;
+			k++;
+			
+		}
+
+		return array;
+
+
+	}
+
+
+
+	public int[] mergeSort(int[] array)
+	{
+		if(array.length<2)
+			return array;
+		int mid=array.length/2;
+		int[] arr1=new int[mid];
+		int[] arr2=new int[array.length-mid];
+		for (int i = 0; i < arr1.length; i++) {
+			arr1[i]=array[i];
+		}
+	
+		for (int i = mid; i < array.length; i++) {
+			arr2[i-mid]=array[i];
+		}
+	
+		
+		arr1=mergeSort(arr1);
+		arr2=mergeSort(arr2);
+		printStatus(array);
+		array=merge(arr1,arr2,array);
+	
+
+		return array;
+		
+		
+		
+	}
+
+	public boolean isFinished()
+	{
+		return this.finished;
 	}
 
 
