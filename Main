@@ -1,3 +1,4 @@
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.util.Random;
 
@@ -11,7 +12,7 @@ public class Main
 	public static void main(String[] args) 
 	{
 		//setting up the frame
-		int towersNumber=50;
+		int towersNumber=120;
 		JFrame frame = new JFrame();
 		frame.setSize(xSize,ySize);
 		frame.setResizable(true);
@@ -29,6 +30,7 @@ public class Main
 		frame.add(sortersView);
 		
 		sortersView.showInsertion();
+		frame.setVisible(true);
 
 
 	}
@@ -38,8 +40,8 @@ public class Main
 	{
 		Random rand = new Random();
 		int height;
-		int width = (int) (frameWidth/(TA.length*1.6));
-		int spaces = (int) (width*2);
+		int width = (int)(frameWidth/(TA.length*1.5));
+		int spaces = (int)((width*1.5));
 		
 		for (int i = 0; i < TA.length; i++) 
 		{
