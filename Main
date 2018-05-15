@@ -11,10 +11,10 @@ public class Main
 	public static void main(String[] args) 
 	{
 		//setting up the frame
-		int towersNumber=20;
+		int towersNumber=50;
 		JFrame frame = new JFrame();
 		frame.setSize(xSize,ySize);
-		frame.setResizable(false);
+		frame.setResizable(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("How2Sort");
 		frame.setLayout(new GridLayout());
