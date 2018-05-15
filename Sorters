@@ -1,12 +1,13 @@
 
 
+
 public class Sorters 
 {
 	private boolean finished=false;
 	private int steps=1;
 	private int stepIndex;
 
-	public void printStatus(int[] array)
+	public int[] printStatus(int[] array)
 	{	
 		System.out.println("\n\nstep number: "+this.steps);
 		this.steps++;
@@ -18,44 +19,64 @@ public class Sorters
 		System.out.print(array[array.length-1]);
 		if(this.finished)
 			System.out.println("\nDONE");
+		return array;
+		
+	}
+	//takes the min number and puts it in beginning
+	public int[] bubbleSort(int[] array)
+	{
+		
+		int minNumberIndex=0;
+		for (int i = 0; i < array.length; i++) {
+			minNumberIndex=i;
+			
+			for (int j = minNumberIndex; j < array.length; j++) {
+				if(array[j]<array[minNumberIndex])
+					minNumberIndex=j;
+			
+				printStatus(array);
+			
+			}
+			int temp=array[i];
+			array[i]=array[minNumberIndex];
+			array[minNumberIndex]=temp;
+			printStatus(array);
+			
+			
+		}
+		finished=true;
+		return array;
+		
 		
 	}
 	
-	public int[] Insertion(int[] array)
+	public int[] insertionSort(int[] intArray) 
 	{
-
-		finished=false;
-
+	
+		finished=true;
+		
+		
 		int keepNum;
-		while(!this.finished)
-		{
-			for (int i = 1; i < array.length; i++) 
 
+			for (int i = 1; i < intArray.length; i++) 
 			{
-				if(i==array.length-1&&array[array.length-1]>=array[array.length-2])
+				
+				if(intArray[i-1]>intArray[i])
 				{
-					this.finished=true;
-					printStatus(array);
+					keepNum=intArray[i-1];
+					intArray[i-1]=intArray[i];
+					intArray[i]=keepNum;
+					finished=false;	
+					stepIndex=i-1;
+					printStatus(intArray);
 					break;
 				}
-				if(array[i-1]>array[i])
-				{
-					keepNum=array[i-1];
-					array[i-1]=array[i];
-					array[i]=keepNum;
-					stepIndex=i;
-					printStatus(array);
-					break; 
-				}
+				
 			}
-		}
-		return array;
+		
+		return intArray;
 	}
 	
-	public int getStepIndex()
-	{
-		return stepIndex;
-	}
 
 	//merges 2 arrays into 1 array
 	public int[] merge(int[] arr1,int[] arr2,int[] array)
@@ -121,16 +142,22 @@ public class Sorters
 		printStatus(array);
 		array=merge(arr1,arr2,array);
 	
-
+		
 		return array;
-		
-		
+				
 		
 	}
 
 	public boolean isFinished()
 	{
 		return this.finished;
+	}
+	
+
+	
+	public int getStepIndex()
+	{
+		return stepIndex;
 	}
 
 
