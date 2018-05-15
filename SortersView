@@ -16,7 +16,7 @@ public class SortersView extends JPanel
 	private Timer timer;
 	private int counter, intIndex;
 	private int[] intArray;
-	private Sorters s1 = new Sorters();
+	private Sorters sorters = new Sorters();
 
 	public SortersView(Tower[] TA)
 	{
@@ -39,9 +39,8 @@ public class SortersView extends JPanel
 	}
 
 	//update the tower array, every time he update the array to the array after an insertion sorting step 
-	public void showInsertion()
+	public void start(String sorter)
 	{
-		System.out.println("Insertion Sorting logs:\n");
 		counter=0;
 
 		timer = new Timer(200, new ActionListener() 
@@ -51,9 +50,12 @@ public class SortersView extends JPanel
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				fillIntArray(TA);
-				intArray=s1.Insertion(intArray);
-				intIndex=s1.getStepIndex();
-				
+				if(sorter.equals("bubbleSort"))
+					intArray=sorters.bubbleSort(intArray);
+				else if(sorter.equals("insertionSort"))
+					intArray=sorters.insertionSort(intArray);
+				intIndex=sorters.getStepIndex();
+
 				for (int i = 0; i < TA.length; i++)
 				{
 					if(i==intIndex)
@@ -65,11 +67,11 @@ public class SortersView extends JPanel
 						TA[i].setColor(Color.black);
 					}
 				}
-				
+
 				updateTowerArray(intArray);
 				addToCounter();
 				repaint();
-				printLogs();
+				//printLogs();
 
 
 				if(getSorters().isFinished()&&timer.isRunning())
@@ -84,9 +86,11 @@ public class SortersView extends JPanel
 		timer.start();
 	}
 
+
+
 	public void printLogs()
 	{
-		if(!s1.isFinished())
+		if(!sorters.isFinished())
 		{
 			System.out.println("step "+counter+":");
 
@@ -100,7 +104,7 @@ public class SortersView extends JPanel
 	}
 	public void updateTowerArray(int[] intArray)
 	{
-		
+
 		for (int i = 0; i < TA.length; i++) 
 		{
 			TA[i].setHeight(intArray[i]);
@@ -135,7 +139,7 @@ public class SortersView extends JPanel
 
 	public Sorters getSorters()
 	{
-		return this.s1;
+		return this.sorters;
 	}
 
 	public Tower[] getTA()
